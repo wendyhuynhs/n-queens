@@ -13,6 +13,7 @@ describe('solvers', function() {
         }, 0);
 
         expect(solutionBoard.get('n')).to.equal(n);
+        // console.log(solutionBoard.get('n'))
         expect(numPieces).to.equal(n);
         expect(solutionBoard.hasAnyRooksConflicts()).to.be.equal(false);
       });
