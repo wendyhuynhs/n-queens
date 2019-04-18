@@ -17,16 +17,24 @@
 
 window.findNRooksSolution = function(n) {
   let solution = new Board({n:n});
-  for (let r = 0; r < n; r++) {
-    for (let c = 0; c < n; c++) {
-      solution.togglePiece(r, c);
-      if (solution.hasAnyRowConflicts() || solution.hasAnyColConflicts()) {
-        solution.togglePiece(r, c);
-      }
-    }
+  let r = 0;
+  let c = 0;
+  while (r < n && c < n) {
+    solution.togglePiece(r, c);
+    r++;
+    c++;
   }
-  // console.log('Single solution for ' + n + ' rooks:', JSON.stringify(solution));
-  // return solution
+
+  // for (let r = 0; r < n; r++) {
+  //   for (let c = 0; c < n; c++) {
+  //     solution.togglePiece(r, c);
+  //     if (solution.hasAnyRooksConflicts()) {
+  //       solution.togglePiece(r, c);
+  //     } 
+  //   }
+  // } this solution also works but the one we submitted saves a few ms.
+
+  console.log('Single solution for ' + n + ' rooks:', JSON.stringify(solution));
   return solution.rows();
 
 };
@@ -123,3 +131,14 @@ window.countNQueensSolutions = function(n) {
   console.log('Number of solutions for ' + n + ' queens:', solutionCount);
   return solutionCount;
 };
+
+// window.countNQueensSolutions = function N(Q,u,ee,n,s,H,R){
+//   s = 0;
+//   Q = u ? Q : (1<<Q)-1;
+//   H = ~(u|ee|n)&Q;
+//   while(H) {
+//     H^=R=-H&H;
+//     s += N(Q,(u|R)<<1,ee|R,(n|R)>>1);
+//   };
+//   return s+=ee==Q
+// }
